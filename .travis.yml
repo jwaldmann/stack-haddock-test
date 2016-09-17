@@ -1,18 +1,13 @@
 # https://docs.haskellstack.org/en/stable/travis_ci/
 # https://github.com/haskell-distributed/cloud-haskell/blob/master/.travis.yml
 
-language: c
+language: haskell
 
 sudo: false
 
 cache:
   directories:
   - $HOME/.stack/
-
-matrix:
-  include:
-    - env: CABALVER=1.24 GHCVER=8.0.1
-      addons: {apt: {packages: [cabal-install-1.24,ghc-8.0.1],sources: [hvr-ghc]}}
 
 before_install:
   - mkdir -p ~/.local/bin
@@ -22,4 +17,9 @@ before_install:
 
 install:
   - stack -j 2 setup 
-  - stack -j 2 build --haddock-arguments=--hyperlinked-source --haddock-deps 
+  - stack -j 2 build --only-snapshot
+
+script:
+  - git --version
+  - stack --version
+  - stack -j 2 build --haddock --haddock-deps --haddock-arguments=--hyperlinked-source 
