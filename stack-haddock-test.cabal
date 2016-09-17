@@ -1,0 +1,14 @@
+name:                stack-haddock-test
+version:             0.1.0.0
+license:             GPL-3
+license-file:        LICENSE
+author:              Johannes Waldmann
+maintainer:          johannes.waldmann@htwk-leipzig.de
+build-type:          Simple
+cabal-version:       >=1.10
+
+library
+  exposed-modules:     Exposed
+  other-modules:       Other
+  build-depends:       base, containers
+  default-language:    Haskell2010
